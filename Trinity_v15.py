@@ -30,9 +30,11 @@ def ts_now():
 # ====================================================
 # CONFIG BÁSICA  (RELLENA TUS CREDENCIALES AQUÍ)
 # ====================================================
-BOT_TOKEN = "8482934649:AAHuH_ekJPw5y8NBSlwC61tBcaprl9HVfts"
-CHAT_ID = "1303018170"
-BASE_URL = f"https://api.telegram.org/bot{BOT_TOKEN}/"
+import os
+
+BOT_TOKEN = os.getenv("BOT_TOKEN", "")
+CHAT_ID   = os.getenv("CHAT_ID", "")
+BASE_URL  = f"https://api.telegram.org/bot{BOT_TOKEN}/"
 
 # Sesión HTTP con keep-alive y reintentos automáticos
 session = requests.Session()
@@ -53,10 +55,11 @@ import time  # si ya está, no lo repitas
 START_TS = time.time()                 # marca de arranque
 HEALTH_STARTUP_GRACE_SEC = 180        # 3 min de gracia (puedes usar 120–240)
 
-# Binance (solo lectura pública)
-BINANCE_API_KEY = "SvWGM8ISpyTWDqvMxQsJ0mAt1eX6Jq2RhVP6WYcGxQqv73tR9eKxkZJCK4NC6aYD"
-BINANCE_SECRET = "v74iudZRB4mHE5cUMOZlJIIhm3a9Ogc7HENBaTzoK7CJGNqZVMliPnvif6uhN4mF"
-BINANCE_FUTURES_PUBLIC = "https://fapi.binance.com"
+import os
+
+BINANCE_API_KEY = os.getenv("BINANCE_API_KEY", "")
+BINANCE_SECRET  = os.getenv("BINANCE_SECRET", "")
+BINANCE_FUTURES_PUBLIC = os.getenv("BINANCE_FUTURES_PUBLIC", "https://fapi.binance.com")
 
 # INTERVALOS
 RADAR_INTERVAL_SEC     = 2 * 60 * 60   # cada 2h
