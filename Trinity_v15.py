@@ -16,6 +16,20 @@ DEPENDENCIAS: requests (pip install requests)
 
 import time, math, requests, threading, statistics
 from datetime import datetime, timezone, timedelta
+import shutil
+
+try:
+    import imgkit
+    WKIMG = shutil.which("wkhtmltoimage") or "/usr/bin/wkhtmltoimage"
+    IMGKIT_OK = WKIMG is not None
+    if IMGKIT_OK:
+        IMGKIT_CONFIG = imgkit.config(wkhtmltoimage=WKIMG)
+    else:
+        IMGKIT_CONFIG = None
+except Exception:
+    imgkit = None
+    IMGKIT_OK = False
+    IMGKIT_CONFIG = None
 
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
