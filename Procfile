@@ -1,1 +1,1 @@
-worker: python Trinity_v151.py
+web: gunicorn wsgi:app --preload --timeout 120
