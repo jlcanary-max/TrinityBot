@@ -1,0 +1,1 @@
+worker: python Trinity_v151.py
