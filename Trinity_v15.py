@@ -19,6 +19,7 @@ from datetime import datetime, timezone, timedelta
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
+
 # --- Desactivar render de imágenes en Render ---
 IMGKIT_OK = False
 IMGKIT_CONFIG = None
@@ -881,3 +882,22 @@ if __name__ == "__main__":
 
     print("✅ TrinityBot v15 ejecutándose en modo polling (Render)...")
     app.run_polling()
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+
+# --- /start ---
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = (
+        "🤖 Trinity está activo ✅\n\n"
+        "Comandos disponibles:\n"
+        "/radar – Radar BTC ciclo v15\n"
+        "/sentimiento – Sentimiento en vivo\n"
+        "/peak – Señales de pico de ciclo\n"
+        "/watchdog_on – Activa Watchdog\n"
+        "/scalp_on – Activa Scalp Sniper"
+    )
+    if update and update.message:
+        await update.message.reply_text(text)
+
+app = ApplicationBuilder().token(BOT_TOKEN).build()
+app.add_handler(CommandHandler("start", start))
