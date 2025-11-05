@@ -14,17 +14,20 @@ DEPENDENCIAS: requests (pip install requests)
 © 2025
 """
 
-import time, math, requests, threading, statistics
+import os, time, math, requests, threading, statistics, shutil
 from datetime import datetime, timezone, timedelta
-import shutil
-import os
-# --- Render desactivado en Render.com ---
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+# --- Desactivar render de imágenes en Render ---
 IMGKIT_OK = False
 IMGKIT_CONFIG = None
-
 def html_to_png_or_text(html, fallback_text="", out_path="/tmp/reporte.png"):
-    # En Render no generaremos imágenes; devolvemos texto siempre
     return None, "no-render"
+
+# --- Dummy de Telegram para no importar telegram ni imghdr ---
+def tg_send(msg: str):
+    print(f"[TG] {msg}")
 
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
