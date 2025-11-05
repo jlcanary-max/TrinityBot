@@ -18,7 +18,7 @@ import os, time, math, requests, threading, statistics, shutil
 from datetime import datetime, timezone, timedelta
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
 # --- Desactivar render de imágenes en Render ---
 IMGKIT_OK = False
 IMGKIT_CONFIG = None
